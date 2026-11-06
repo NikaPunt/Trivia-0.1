@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Trivia</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    body {
+      padding: 1.5rem 1.25rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .team-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 0.9rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .theme-strip {
+      padding: 0.75rem 0;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .question-text {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+    .question-ask {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .status-line {
+      padding: 0.75rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+    }
+    .wager-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .wager-btn {
+      padding: 0.7rem 0;
+      text-align: center;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .wager-btn.selected {
+      background: var(--accent);
+      color: #111;
+      border-color: var(--accent);
+    }
+    .wager-btn:disabled {
+      opacity: 0.25;
+      text-decoration: line-through;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- JOIN / RECONNECT VIEW -->
+  <div id="join-view" style="margin-top: 1rem;">
+    <h1 style="font-family: var(--font-serif); font-size: 2rem; font-weight: 400; margin-bottom: 0.5rem;">Join Trivia</h1>
+    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.75rem;">
+      Enter your team name and a 4-digit PIN so you can reconnect anytime if your phone locks.
+    </p>
+    <form id="join-form" style="display: flex; flex-direction: column; gap: 1.1rem;">
+      <div>
+        <label class="meta-line" style="display:block; margin-bottom:0.4rem;">Team Name</label>
+        <input type="text" id="team-name-input" placeholder="Team name" required maxlength="32" />
+      </div>
+      <div>
+        <label class="meta-line" style="display:block; margin-bottom:0.4rem;">Team PIN</label>
+        <input type="text" id="team-pin-input" placeholder="4-digit PIN" maxlength="8" required />
+      </div>
+      <div id="join-error" style="color: var(--red); font-size: 0.9rem; display: none;"></div>
+      <button type="submit" class="btn" style="padding: 0.9rem; font-size: 1rem; margin-top: 0.25rem;">Join Game</button>
+    </form>
+  </div>
+
+  <!-- ACTIVE PLAYER VIEW -->
+  <div id="game-view" style="display: none;">
+    <div class="team-bar">
+      <div>
+        <span id="team-name-display" style="font-weight: 700; font-size: 1.05rem;"></span>
+        <span id="team-score-display" style="color: var(--text-muted); margin-left: 0.5rem; font-size: 0.95rem;">0 pts</span>
+      </div>
+      <button id="switch-team-btn" style="background:none; border:none; color:var(--text-muted); font-size:0.85rem; text-decoration:underline; cursor:pointer;">Switch team</button>
+    </div>
+
+    <!-- SECRET THEME GUESSER / REVEAL STRIP -->
+    <div id="theme-container" class="theme-strip"></div>
+
+    <div id="phase-container"></div>
+  </div>
+
+  <script src="/app.js"></script>
+  <script>
+    const STORAGE_KEY = 'antigravity_trivia_team';
+    let currentTeam = null;
+    let lastStateHash = '';
+    let lastThemeHash = '';
+    let selectedWager = null;
+
+    function loadSavedTeam() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          currentTeam = JSON.parse(raw);
+          postJson('/api/join', { teamName: currentTeam.name, pin: currentTeam.pin })
+            .then(res => {
+              currentTeam = res.team;
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(currentTeam));
+              showGameView();
+            })
+            .catch(() => {
+              showJoinView();
+            });
+          return;
+        }
+      } catch (e) {}
+      showJoinView();
+    }
+
+    function showJoinView() {
+      document.getElementById('join-view').style.display = 'block';
+      document.getElementById('game-view').style.display = 'none';
+    }
+
+    function showGameView() {
+      document.getElementById('join-view').style.display = 'none';
+      document.getElementById('game-view').style.display = 'block';
+      document.getElementById('team-name-display').textContent = currentTeam.name;
+      pollState(true);
+    }
+
+    document.getElementById('join-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const errEl = document.getElementById('join-error');
+      errEl.style.display = 'none';
+      const teamName = document.getElementById('team-name-input').value.trim();
+      const pin = document.getElementById('team-pin-input').value.trim();
+      try {
+        const res = await postJson('/api/join', { teamName, pin });
+        currentTeam = res.team;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(currentTeam));
+        showGameView();
+      } catch (err) {
+        errEl.textContent = err.message;
+        errEl.style.display = 'block';
+      }
+    });
+
+    document.getElementById('switch-team-btn').addEventListener('click', () => {
+      if (confirm('Leave this team session on this phone?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        currentTeam = null;
+        showJoinView();
+      }
+    });
+
+    async function pollState(forceRender = false) {
+      if (!currentTeam) return;
+      try {
+        const res = await fetch(`/api/state?teamId=${encodeURIComponent(currentTeam.id)}&_t=${Date.now()}`, { cache: 'no-store' });
+        const data = await res.json();
+
+        const me = asArray(data.leaderboard).find(t => t.id === currentTeam.id);
+        if (me) {
+          document.getElementById('team-score-display').textContent = `${me.score} pts`;
+        }
+
+        const themeHash = JSON.stringify({
+          rev: data.event ? data.event.themeRevealed : false,
+          ts: data.myThemeStatus
+        });
+        if (forceRender || themeHash !== lastThemeHash) {
+          lastThemeHash = themeHash;
+          renderThemeStrip(data);
+        }
+
+        const stateHash = JSON.stringify({
+          phase: data.state.phase,
+          r: data.state.roundIndex,
+          q: data.state.questionIndex,
+          clue: data.state.clueStep,
+          sub: data.mySubmission ? data.mySubmission.answer : null,
+          wager: data.mySubmission ? data.mySubmission.wager : null,
+          grade: data.mySubmission ? data.mySubmission.grade : null,
+          usedWagers: data.usedPoolWagers || []
+        });
+
+        if (forceRender || stateHash !== lastStateHash) {
+          lastStateHash = stateHash;
+          renderPhase(data);
+        }
+      } catch (e) {}
+    }
+
+    function renderThemeStrip(data) {
+      const el = document.getElementById('theme-container');
+      const ev = data.event || {};
+      const ts = data.myThemeStatus || {};
+      const guesses = asArray(ts.guesses);
+      const lastGuess = guesses.length > 0 ? guesses[guesses.length - 1] : null;
+
+      if (ts.approved) {
+        el.innerHTML = `
+          <div class="meta-line" style="color:var(--green); margin-bottom:0.2rem;">Theme Solved</div>
+          <div style="font-weight:700; color:var(--text);">${escapeHtml(ts.formalTheme || '')}</div>
+        `;
+        return;
+      }
+
+      if (ev.themeRevealed) {
+        el.innerHTML = `
+          <div class="meta-line" style="margin-bottom:0.2rem;">Tonight's Theme</div>
+          <div style="font-weight:700; color:var(--accent);">${escapeHtml(ts.formalTheme || ev.formalTheme || '')}</div>
+        `;
+        return;
+      }
+
+      // Round 1: Secret theme is open for guesses
+      let statusHtml = '';
+      if (lastGuess) {
+        if (lastGuess.status === 'pending') {
+          statusHtml = `<div style="color:var(--accent); font-size:0.85rem; margin-bottom:0.5rem;">Pending host review: "${escapeHtml(lastGuess.guess)}"</div>`;
+        } else if (lastGuess.status === 'rejected') {
+          statusHtml = `<div style="color:var(--red); font-size:0.85rem; margin-bottom:0.5rem;">Not quite ("${escapeHtml(lastGuess.guess)}") — guess again anytime!</div>`;
+        }
+      }
+
+      el.innerHTML = `
+        <details>
+          <summary class="meta-line" style="cursor:pointer; color:var(--accent);">
+            Guess Tonight's Secret Theme ${lastGuess && lastGuess.status === 'pending' ? '(Pending...)' : ''}
+          </summary>
+          <div style="margin-top:0.65rem;">
+            <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:0.5rem;">
+              Spot what links the questions or answers in Round 1? Submit a guess for bonus points before Round 1 ends.
+            </p>
+            ${statusHtml}
+            <form id="theme-guess-form" style="display:flex; gap:0.5rem;">
+              <input type="text" id="theme-guess-input" placeholder="What is the secret theme?" style="padding:0.55rem 0.75rem; font-size:0.9rem;" required />
+              <button type="submit" class="btn btn-secondary" style="padding:0.55rem 0.9rem; font-size:0.85rem; white-space:nowrap;">Send</button>
+            </form>
+          </div>
+        </details>
+      `;
+
+      const form = document.getElementById('theme-guess-form');
+      if (form) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const val = document.getElementById('theme-guess-input').value.trim();
+          if (!val) return;
+          try {
+            await postJson('/api/theme-guess', { teamId: currentTeam.id, guess: val });
+            pollState(true);
+          } catch (err) {
+            alert(err.message);
+          }
+        });
+      }
+    }
+
+    function renderPhase(data) {
+      const container = document.getElementById('phase-container');
+      const phase = data.state.phase;
+      const q = data.question;
+      const sub = data.mySubmission;
+
+      if (phase === 'LOBBY') {
+        container.innerHTML = `
+          <div style="padding: 1.5rem 0;">
+            <div class="meta-line" style="margin-bottom: 0.5rem;">Connected</div>
+            <h2 style="font-family: var(--font-serif); font-weight: 400; font-size: 1.75rem; margin-bottom: 0.5rem;">Waiting for Round 1</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Your answer box will appear here automatically as soon as Question 1 opens.
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      if (phase === 'ROUND_INTRO') {
+        const r = data.round || {};
+        container.innerHTML = `
+          <div style="padding: 1.5rem 0;">
+            <div class="meta-line" style="margin-bottom: 0.5rem;">Round ${r.roundNumber || 1}</div>
+            <h2 style="font-family: var(--font-serif); font-weight: 400; font-size: 1.75rem; margin-bottom: 0.5rem;">${escapeHtml(r.title || '')}</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">${escapeHtml(r.subtitle || '')}</p>
+          </div>
+        `;
+        return;
+      }
+
+      if (phase === 'SECTION_INTRO' && q) {
+        const poolCats = asArray(q.poolCategories);
+        const poolHtml = poolCats.length > 0 ? `
+          <div style="margin-top:1.25rem; padding-top:1rem; border-top:1px solid var(--border);">
+            <div class="meta-line" style="margin-bottom:0.4rem;">Categories (8, 6, 4, 2 pts)</div>
+            <div style="color:var(--accent); font-weight:600;">${poolCats.map(c => escapeHtml(c)).join(' · ')}</div>
+          </div>
+        ` : '';
+        container.innerHTML = `
+          <div style="padding: 1.5rem 0;">
+            <div class="meta-line" style="margin-bottom: 0.5rem;">Up Next</div>
+            <h2 style="font-family: var(--font-serif); font-weight: 400; font-size: 1.85rem; margin-bottom: 0.65rem;">
+              ${escapeHtml(q.sectionIntroTitle || q.sectionTitle || q.category)}
+            </h2>
+            <p style="color: var(--text-muted); font-size: 0.98rem; line-height: 1.5;">
+              ${escapeHtml(q.sectionIntroDesc || '')}
+            </p>
+            ${poolHtml}
+          </div>
+        `;
+        return;
+      }
+
+      if (phase === 'LEADERBOARD') {
+        const rows = asArray(data.leaderboard).map((t, idx) => `
+          <div style="display:flex; justify-content:space-between; padding:0.65rem 0; border-bottom:1px solid var(--border); font-weight:${t.id === currentTeam.id ? '700' : '400'}; color:${t.id === currentTeam.id ? 'var(--accent)' : 'var(--text)'};">
+            <span>${idx + 1}. ${escapeHtml(t.name)}</span>
+            <span>${t.score} pts</span>
+          </div>
+        `).join('');
+        container.innerHTML = `
+          <div class="meta-line" style="margin-bottom: 1rem;">Standings</div>
+          ${rows || '<p style="color:var(--text-muted);">No scores yet.</p>'}
+        `;
+        return;
+      }
+
+      if (!q) return;
+
+      if (phase === 'QUESTION_OPEN') {
+        const existingAns = sub && sub.answer ? sub.answer : '';
+        const existingWager = sub && sub.wager ? Number(sub.wager) : null;
+        if (existingWager !== null && selectedWager === null) {
+          selectedWager = existingWager;
+        }
+
+        const mechanic = q.mechanic || 'standard';
+        const usedWagers = asArray(data.usedPoolWagers).map(Number);
+        const poolCats = asArray(q.poolCategories);
+        const poolVals = asArray(q.poolValues).length > 0 ? asArray(q.poolValues).map(Number) : [8, 6, 4, 2];
+
+        let mechanicUi = '';
+
+        // 1. CONFIDENCE POOL UI (8, 6, 4, 2)
+        if (mechanic === 'confidence') {
+          const catsText = poolCats.join(' · ');
+          const buttonsHtml = poolVals.map(v => {
+            const isUsed = usedWagers.includes(v);
+            const isSelected = (selectedWager === v);
+            return `
+              <button type="button" class="wager-btn ${isSelected ? 'selected' : ''}" ${isUsed ? 'disabled' : ''} data-wager="${v}">
+                ${v} pts
+              </button>
+            `;
+          }).join('');
+
+          mechanicUi = `
+            <div style="margin-bottom:1.25rem; padding-bottom:1rem; border-bottom:1px solid var(--border);">
+              <div class="meta-line" style="margin-bottom:0.35rem;">Confidence Pool Categories: ${escapeHtml(catsText)}</div>
+              <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.65rem;">
+                Assign one point value to each of the 4 questions in this set:
+              </div>
+              <div class="wager-grid">${buttonsHtml}</div>
+            </div>
+          `;
+        }
+
+        // 2. JEOPARDY LOCK-IN WAGER UI
+        if (mechanic === 'jeopardy') {
+          const maxWager = q.points || 20;
+          mechanicUi = `
+            <div style="margin-bottom:1.25rem; padding-bottom:1rem; border-bottom:1px solid var(--border);">
+              <label class="meta-line" style="display:block; margin-bottom:0.4rem;">
+                Jeopardy Wager (0 to ${maxWager} pts — +wager if right, -wager if wrong)
+              </label>
+              <input type="text" inputmode="numeric" id="jeopardy-wager-input" placeholder="Points to wager (0 - ${maxWager})" value="${existingWager !== null ? existingWager : ''}" ${!q.jeopardyWagerPhase && existingWager !== null ? 'readonly' : ''} required />
+            </div>
+          `;
+        }
+
+        const hideAnswerInput = (mechanic === 'jeopardy' && q.jeopardyWagerPhase);
+
+        container.innerHTML = `
+          <div class="meta-line" style="margin-bottom:1rem;">
+            Question ${q.number} &nbsp;·&nbsp; ${escapeHtml(q.sectionTitle || q.category)} &nbsp;·&nbsp; <strong>${escapeHtml(q.answerType || 'Answer')}</strong>
+          </div>
+
+          ${!hideAnswerInput ? `
+            <div class="question-text">${buildQuestionParagraph(q, true)}</div>
+          ` : `
+            <div class="question-text" style="color:var(--text-muted);">
+              Category: <strong style="color:var(--text);">${escapeHtml(q.category)}</strong>
+            </div>
+          `}
+
+          <div class="question-ask">
+            ${escapeHtml(q.questionPrompt)}
+          </div>
+
+          ${sub && (existingAns || existingWager !== null) ? `
+            <div class="status-line" style="color: var(--green);">
+              Submitted: <strong>${existingAns ? escapeHtml(existingAns) : 'Wager Locked'}</strong>
+              ${existingWager !== null ? ` (${existingWager} pts)` : ''}
+            </div>
+          ` : ''}
+
+          <form id="answer-form" style="display:flex; flex-direction:column; gap:0.75rem;">
+            ${mechanicUi}
+            ${!hideAnswerInput ? `
+              <input type="text" id="answer-input" placeholder="${escapeHtml(q.answerType || 'Your answer')}" value="${escapeHtml(existingAns)}" required autocomplete="off" />
+            ` : ''}
+            <button type="submit" class="btn" style="padding:0.9rem; font-size:1rem;">
+              ${hideAnswerInput ? 'Lock In Wager' : (sub && existingAns ? 'Update Submission' : 'Submit Answer')}
+            </button>
+          </form>
+        `;
+
+        // Bind confidence buttons
+        container.querySelectorAll('.wager-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            selectedWager = Number(btn.getAttribute('data-wager'));
+            container.querySelectorAll('.wager-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+          });
+        });
+
+        document.getElementById('answer-form').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const ansEl = document.getElementById('answer-input');
+          const val = ansEl ? ansEl.value.trim() : '';
+          let wagerToSend = null;
+
+          if (mechanic === 'confidence') {
+            if (!selectedWager) {
+              alert('Select a confidence point value (8, 6, 4, or 2) first.');
+              return;
+            }
+            wagerToSend = selectedWager;
+          } else if (mechanic === 'jeopardy') {
+            const jInput = document.getElementById('jeopardy-wager-input');
+            const maxW = q.points || 20;
+            const parsed = parseInt(jInput.value, 10);
+            if (isNaN(parsed) || parsed < 0 || parsed > maxW) {
+              alert(`Enter a valid wager between 0 and ${maxW}.`);
+              return;
+            }
+            wagerToSend = parsed;
+          }
+
+          try {
+            await postJson('/api/submit', { teamId: currentTeam.id, answer: val, wager: wagerToSend });
+            selectedWager = null;
+            pollState(true);
+          } catch (err) {
+            alert(err.message);
+          }
+        });
+        return;
+      }
+
+      if (phase === 'SUBMISSIONS_LOCKED') {
+        container.innerHTML = `
+          <div class="meta-line" style="margin-bottom:0.75rem;">Question ${q.number} · Submissions Closed</div>
+          <div style="font-weight:600; margin-bottom:1.25rem;">${escapeHtml(q.questionPrompt)}</div>
+          <div class="status-line">
+            Your answer: <strong>${sub && sub.answer ? escapeHtml(sub.answer) : 'None'}</strong>
+            ${sub && sub.wager ? ` (${sub.wager} pts)` : ''}
+          </div>
+        `;
+        return;
+      }
+
+      if (phase === 'ANSWER_REVEALED') {
+        const isCorrect = sub && sub.grade === 'correct';
+        const isHalf = sub && sub.grade === 'half';
+        const pts = (sub && sub.wager) ? sub.wager : (q.points || 4);
+        let verdictText = `Missed (${sub && sub.answer ? escapeHtml(sub.answer) : 'No answer'})`;
+        if (isCorrect) verdictText = `Correct (+${pts} pts)`;
+        else if (isHalf) verdictText = `Half credit (+${Math.round(pts/2)} pts)`;
+        else if (q.mechanic === 'jeopardy' && sub && sub.wager) verdictText = `Missed (-${sub.wager} pts)`;
+
+        container.innerHTML = `
+          <div class="meta-line" style="margin-bottom:0.35rem;">Answer</div>
+          <div style="font-family:var(--font-serif); font-size:2rem; margin-bottom:1rem;">
+            ${escapeHtml(q.answer)}
+          </div>
+          <div class="status-line" style="color:${isCorrect ? 'var(--green)' : (isHalf ? 'var(--accent)' : 'var(--text-muted)')}; font-weight:600;">
+            ${verdictText}
+          </div>
+          ${q.funFact ? `<p style="font-size:0.95rem; color:var(--text-muted); line-height:1.5;">${escapeHtml(q.funFact)}</p>` : ''}
+        `;
+      }
+    }
+
+    loadSavedTeam();
+    setInterval(() => pollState(false), 1200);
+  </script>
+</body>
+</html>

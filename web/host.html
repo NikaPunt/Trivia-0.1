@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Host Console — Trivia</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    body {
+      padding: 1.5rem 2rem;
+      max-width: 1380px;
+      margin: 0 auto;
+    }
+    .host-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr 380px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 1024px) {
+      .host-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .nav-q-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      width: 100%;
+      text-align: left;
+      padding: 0.45rem 0;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.88rem;
+    }
+    .nav-q-btn.active {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .grade-row {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .grade-btn-group {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+    .grade-btn {
+      flex: 1;
+      padding: 0.35rem 0.5rem;
+      font-size: 0.8rem;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .grade-btn.active-correct { background: var(--green); color: #fff; border-color: var(--green); }
+    .grade-btn.active-half { background: var(--accent); color: #111; border-color: var(--accent); }
+    .grade-btn.active-wrong { background: var(--red); color: #fff; border-color: var(--red); }
+  </style>
+</head>
+<body>
+
+  <header style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:1rem; margin-bottom:2rem; padding-bottom:1rem; border-bottom:1px solid var(--border);">
+    <div>
+      <h1 style="font-family:var(--font-serif); font-size:1.75rem; font-weight:400;">Host Console</h1>
+      <div style="font-size:0.88rem; color:var(--text-muted); margin-top:0.25rem;">
+        Deck: <a href="/deck.html" target="_blank" style="color:var(--text);">/deck.html</a> &nbsp;·&nbsp;
+        Phone Join URL: <strong id="host-join-url" style="color:var(--accent);"></strong> &nbsp;·&nbsp;
+        Formal Theme: <strong id="host-formal-theme" style="color:var(--text);"></strong>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+      <button class="btn btn-secondary" onclick="hostAction({ action: 'prev_step' })">← Prev</button>
+      <button class="btn" onclick="hostAction({ action: 'next_step' })">Next Step (Space) →</button>
+      <button class="btn btn-secondary" onclick="hostAction({ action: 'set_phase', phase: 'LOBBY' })">Lobby</button>
+      <button class="btn btn-secondary" onclick="hostAction({ action: 'set_phase', phase: 'LEADERBOARD' })">Leaderboard</button>
+      <button id="toggle-theme-btn" class="btn btn-secondary" onclick="toggleThemePublic()">Reveal Theme</button>
+      <button class="btn btn-secondary" onclick="resetScoresOnlyPrompt()">Reset Scores</button>
+      <button class="btn btn-danger" onclick="wipeAllPrompt()">Wipe All</button>
+    </div>
+  </header>
+
+  <div class="host-grid">
+    <!-- COLUMN 1: OUTLINE -->
+    <div>
+      <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.75rem;">
+        <span class="meta-line">Questions</span>
+      </div>
+      <div id="outline-container"></div>
+    </div>
+
+    <!-- COLUMN 2: ACTIVE QUESTION -->
+    <div id="active-question-panel"></div>
+
+    <!-- COLUMN 3: THEME GUESSES & SUBMISSIONS -->
+    <div>
+      <div style="margin-bottom:2rem;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem;">
+          <span class="meta-line">Secret Theme Guesses</span>
+          <span id="host-theme-count" class="meta-line">0 Pending</span>
+        </div>
+        <div id="theme-guesses-container"></div>
+      </div>
+
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.75rem;">
+          <span class="meta-line">Question Submissions</span>
+          <span id="host-sub-count" class="meta-line">0 / 0</span>
+        </div>
+        <div id="submissions-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+  <script>
+    let hostData = null;
+
+    async function hostAction(payload) {
+      try {
+        hostData = await postJson('/api/host/action', payload);
+        renderHost(hostData);
+      } catch (e) {
+        alert(e.message);
+      }
+    }
+
+    function toggleThemePublic() {
+      if (!hostData) return;
+      const cur = !!(hostData.event && hostData.event.themeRevealed);
+      hostAction({ action: 'reveal_theme', revealed: !cur });
+    }
+
+    function resetScoresOnlyPrompt() {
+      if (confirm('Reset all question submissions and theme guesses back to Question 1, while keeping connected teams?')) {
+        hostAction({ action: 'reset_game', keepTeams: true });
+      }
+    }
+
+    function wipeAllPrompt() {
+      if (confirm('Wipe EVERYTHING (all teams, scores, and submissions) and start a brand new clean game?')) {
+        hostAction({ action: 'reset_game', keepTeams: false });
+      }
+    }
+
+    async function pollHost() {
+      try {
+        const res = await fetch('/api/state?role=host&_t=' + Date.now(), { cache: 'no-store' });
+        hostData = await res.json();
+        renderHost(hostData);
+      } catch (e) {}
+    }
+
+    function renderHost(data) {
+      document.getElementById('host-join-url').textContent = data.joinUrl;
+      document.getElementById('host-formal-theme').textContent = (data.event && data.event.formalTheme) ? data.event.formalTheme : '';
+      const themeBtn = document.getElementById('toggle-theme-btn');
+      const isThemeRev = !!(data.event && data.event.themeRevealed);
+      themeBtn.textContent = isThemeRev ? 'Hide Theme' : 'Reveal Theme Publicly';
+
+      // 1. Outline
+      const outlineEl = document.getElementById('outline-container');
+      outlineEl.innerHTML = asArray(data.outline).map(r => `
+        <div style="margin-bottom:1.5rem;">
+          <div class="meta-line" style="color:var(--text); margin-bottom:0.4rem;">
+            ${escapeHtml(r.title)}
+          </div>
+          ${asArray(r.questions).map(q => {
+            const isActive = (data.state.roundIndex === r.roundIndex && data.state.questionIndex === q.index);
+            return `
+              <button class="nav-q-btn ${isActive ? 'active' : ''}" onclick="hostAction({ action: 'jump', roundIndex: ${r.roundIndex}, questionIndex: ${q.index}, phase: 'QUESTION_OPEN' })">
+                <span>${q.number}. ${escapeHtml(q.answer)}</span>
+                <span style="font-size:0.75rem; opacity:0.7;">${escapeHtml(q.sectionTitle || q.mechanic)}</span>
+              </button>
+            `;
+          }).join('')}
+        </div>
+      `).join('');
+
+      // 2. Active Question
+      const qPanel = document.getElementById('active-question-panel');
+      const q = data.question;
+      const phase = data.state.phase;
+
+      if (!q) {
+        qPanel.innerHTML = `<p style="color:var(--text-muted);">No active question selected.</p>`;
+      } else {
+        const isJeopardy = (q.mechanic === 'jeopardy');
+        const hasSecIntro = !!q.sectionIntroTitle;
+        qPanel.innerHTML = `
+          <div class="meta-line" style="margin-bottom:1rem;">
+            Question ${q.number} of ${q.totalInRound} &nbsp;·&nbsp; ${escapeHtml(q.sectionTitle || q.category)} &nbsp;·&nbsp; <strong>Answer Type: ${escapeHtml(q.answerType)}</strong> &nbsp;·&nbsp; Phase: ${escapeHtml(phase)}
+          </div>
+
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.75rem;">
+            ${hasSecIntro ? `
+              <button class="btn btn-secondary" style="font-size:0.82rem; padding:0.45rem 0.8rem;" onclick="hostAction({ action: 'set_phase', phase: 'SECTION_INTRO' })">0. Category Intro Slide</button>
+            ` : ''}
+            <button class="btn btn-secondary" style="font-size:0.82rem; padding:0.45rem 0.8rem;" onclick="hostAction({ action: 'set_phase', phase: 'QUESTION_OPEN' })">1. Open Question</button>
+            ${isJeopardy ? `
+              <button class="btn btn-secondary" style="font-size:0.82rem; padding:0.45rem 0.8rem;" onclick="hostAction({ action: 'set_clue_step', clueStep: ${data.state.clueStep < 2 ? 2 : 1} })">
+                ${data.state.clueStep < 2 ? '1b. Reveal Jeopardy Question Text' : 'Back to Wager-Only Step'}
+              </button>
+            ` : ''}
+            <button class="btn btn-secondary" style="font-size:0.82rem; padding:0.45rem 0.8rem;" onclick="hostAction({ action: 'start_timer', seconds: 45 })">45s Timer</button>
+            <button class="btn btn-warning" style="font-size:0.82rem; padding:0.45rem 0.8rem;" onclick="hostAction({ action: 'set_phase', phase: 'SUBMISSIONS_LOCKED' })">2. Close Submissions</button>
+            <button class="btn btn-success" style="font-size:0.82rem; padding:0.45rem 0.8rem;" onclick="hostAction({ action: 'set_phase', phase: 'ANSWER_REVEALED' })">3. Reveal Answer</button>
+          </div>
+
+          ${phase === 'SECTION_INTRO' ? `
+            <div style="margin-bottom:1.5rem; padding-bottom:1.25rem; border-bottom:1px solid var(--border);">
+              <div class="meta-line" style="color:var(--accent); margin-bottom:0.35rem;">Showing Category Intro Slide on Projector</div>
+              <div style="font-family:var(--font-serif); font-size:1.6rem;">${escapeHtml(q.sectionIntroTitle)}</div>
+              <div style="color:var(--text-muted); font-size:0.95rem; margin-top:0.25rem;">${escapeHtml(q.sectionIntroDesc || '')}</div>
+            </div>
+          ` : ''}
+
+          <div style="font-family:var(--font-serif); font-size:1.45rem; line-height:1.55; margin-bottom:1.25rem;">
+            ${buildQuestionParagraph(q, false)}
+          </div>
+
+          <div style="font-size:1.3rem; font-weight:700; color:var(--accent); margin-bottom:2rem;">
+            ${escapeHtml(q.questionPrompt)}
+          </div>
+
+          <hr class="divider" />
+
+          <div>
+            <div class="meta-line" style="margin-bottom:0.25rem;">Answer</div>
+            <div style="font-family:var(--font-serif); font-size:1.85rem; color:var(--text);">${escapeHtml(q.answer)}</div>
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">
+              Accepted aliases: ${escapeHtml(asArray(q.acceptedAnswers).join(', '))}
+            </div>
+            ${q.funFact ? `<p style="font-size:0.95rem; color:var(--text-muted); margin-top:0.75rem;">${escapeHtml(q.funFact)}</p>` : ''}
+          </div>
+        `;
+      }
+
+      // 3. Secret Theme Guesses
+      const allThemeGuesses = asArray(data.themeGuesses).filter(g => g && g.id && g.guess);
+      const pendingCount = allThemeGuesses.filter(g => g.status === 'pending').length;
+      document.getElementById('host-theme-count').textContent = `${pendingCount} Pending`;
+
+      const tgEl = document.getElementById('theme-guesses-container');
+      if (allThemeGuesses.length === 0) {
+        tgEl.innerHTML = `<p style="color:var(--text-muted); font-size:0.85rem; padding-bottom:0.75rem; border-bottom:1px solid var(--border);">No theme guesses submitted yet.</p>`;
+      } else {
+        tgEl.innerHTML = allThemeGuesses.slice().reverse().map(g => `
+          <div style="padding:0.65rem 0; border-bottom:1px solid var(--border); font-size:0.9rem;">
+            <div style="display:flex; justify-content:space-between;">
+              <strong>${escapeHtml(g.teamName)} <span style="color:var(--text-muted); font-weight:400;">(at Q${g.questionNumber})</span></strong>
+              <span style="color:${g.status === 'approved' ? 'var(--green)' : (g.status === 'rejected' ? 'var(--red)' : 'var(--accent)')}; font-weight:600; text-transform:uppercase; font-size:0.75rem;">
+                ${escapeHtml(g.status)} ${g.status === 'approved' ? `(+${g.bonusPoints} pts)` : ''}
+              </span>
+            </div>
+            <div style="margin:0.25rem 0 0.45rem; color:var(--text);">"${escapeHtml(g.guess)}"</div>
+            <div style="display:flex; gap:0.4rem;">
+              <button class="grade-btn ${g.status === 'approved' ? 'active-correct' : ''}" onclick="hostAction({ action: 'review_theme_guess', guessId: '${g.id}', status: 'approved', bonusPoints: 6 })">Approve (+6)</button>
+              <button class="grade-btn" onclick="hostAction({ action: 'review_theme_guess', guessId: '${g.id}', status: 'approved', bonusPoints: 4 })">Approve (+4)</button>
+              <button class="grade-btn ${g.status === 'rejected' ? 'active-wrong' : ''}" onclick="hostAction({ action: 'review_theme_guess', guessId: '${g.id}', status: 'rejected' })">Reject</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // 4. Question Submissions
+      const teams = asArray(data.leaderboard);
+      const inCount = teams.filter(t => t.submittedCurrent).length;
+      document.getElementById('host-sub-count').textContent = `${inCount}/${teams.length} In`;
+
+      const subEl = document.getElementById('submissions-container');
+      if (teams.length === 0) {
+        subEl.innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">No teams connected yet.</p>`;
+        return;
+      }
+
+      subEl.innerHTML = teams.map(t => {
+        const g = t.currentGrade;
+        const wagerBadge = (t.currentWager !== null && t.currentWager !== undefined) ? ` [${t.currentWager} pts]` : '';
+        return `
+          <div class="grade-row">
+            <div style="display:flex; justify-content:space-between; align-items:baseline;">
+              <strong>${escapeHtml(t.name)} ${t.themeSolved ? '★' : ''}</strong>
+              <div style="display:flex; align-items:baseline; gap:0.5rem;">
+                <span style="font-size:0.9rem; color:var(--text-muted);">${t.score} pts</span>
+                <button onclick="hostAction({ action: 'adjust_bonus', teamId: '${t.id}', delta: 2 })" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:0.8rem;">+2</button>
+                <button onclick="hostAction({ action: 'adjust_bonus', teamId: '${t.id}', delta: -2 })" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:0.8rem;">-2</button>
+              </div>
+            </div>
+
+            <div style="margin-top:0.35rem; font-size:1rem; color:${t.submittedCurrent ? 'var(--text)' : 'var(--text-muted)'};">
+              ${t.submittedCurrent ? `${escapeHtml(t.currentAnswer || '(Wager Locked)')}<strong style="color:var(--accent);">${wagerBadge}</strong>` : 'Waiting...'}
+            </div>
+
+            ${q ? `
+              <div class="grade-btn-group">
+                <button class="grade-btn ${g === 'correct' ? 'active-correct' : ''}" onclick="hostAction({ action: 'grade', questionId: '${q.id}', teamId: '${t.id}', grade: 'correct' })">Correct</button>
+                <button class="grade-btn ${g === 'half' ? 'active-half' : ''}" onclick="hostAction({ action: 'grade', questionId: '${q.id}', teamId: '${t.id}', grade: 'half' })">Half</button>
+                <button class="grade-btn ${g === 'wrong' ? 'active-wrong' : ''}" onclick="hostAction({ action: 'grade', questionId: '${q.id}', teamId: '${t.id}', grade: 'wrong' })">Wrong</button>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    pollHost();
+    setInterval(pollHost, 1000);
+  </script>
+</body>
+</html>

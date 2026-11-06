@@ -1,0 +1,1666 @@
+﻿{
+    "eventId":  "2026-10-13_tuesday-trivia",
+    "phase":  "LEADERBOARD",
+    "roundIndex":  1,
+    "questionIndex":  14,
+    "clueStep":  2,
+    "timerEndUtcMs":  0,
+    "themeRevealed":  true,
+    "updatedAt":  1793150351117,
+    "teams":  [
+                  {
+                      "id":  "the-biggest-loser",
+                      "name":  "The Biggest Loser",
+                      "pin":  "3154",
+                      "bonusPoints":  0
+                  },
+                  {
+                      "id":  "freshbitch-academy",
+                      "name":  "Freshbitch Academy",
+                      "pin":  "1239",
+                      "bonusPoints":  0
+                  },
+                  {
+                      "id":  "not-olivia",
+                      "name":  "Not Olivia",
+                      "pin":  "2214",
+                      "bonusPoints":  0
+                  },
+                  {
+                      "id":  "box-combo-no-slaw-extra-toast",
+                      "name":  "Box combo no slaw extra toast",
+                      "pin":  "2424",
+                      "bonusPoints":  0
+                  },
+                  {
+                      "id":  "myanrack",
+                      "name":  "MyanRack",
+                      "pin":  "1995",
+                      "bonusPoints":  0
+                  }
+              ],
+    "submissions":  [
+                        {
+                            "questionId":  "r1q1",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Waterloo",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793144547404
+                        },
+                        {
+                            "questionId":  "r1q1",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Waterloo",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793144549443
+                        },
+                        {
+                            "questionId":  "r1q1",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Waterloo",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793144558925
+                        },
+                        {
+                            "questionId":  "r1q1",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Mama Mia",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793144568959
+                        },
+                        {
+                            "questionId":  "r1q1",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Frankfurt",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793144579975
+                        },
+                        {
+                            "questionId":  "r1q2",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Root canal",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793144689763
+                        },
+                        {
+                            "questionId":  "r1q2",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Root Canal",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793144690273
+                        },
+                        {
+                            "questionId":  "r1q2",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Root canal",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793144692608
+                        },
+                        {
+                            "questionId":  "r1q2",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Root canal",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793144696590
+                        },
+                        {
+                            "questionId":  "r1q2",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Tooth filling",
+                            "wager":  null,
+                            "grade":  "half",
+                            "autoMatched":  false,
+                            "submittedAt":  1793144704948
+                        },
+                        {
+                            "questionId":  "r1q3",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Luther",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793144799976
+                        },
+                        {
+                            "questionId":  "r1q3",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Walter",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793144816827
+                        },
+                        {
+                            "questionId":  "r1q3",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Jean",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793144842529
+                        },
+                        {
+                            "questionId":  "r1q3",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Scooby Doo",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793144849403
+                        },
+                        {
+                            "questionId":  "r1q3",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Luke",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793144852755
+                        },
+                        {
+                            "questionId":  "r1q4",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Root beer float",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793144973851
+                        },
+                        {
+                            "questionId":  "r1q4",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Root Beer Float",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793144973920
+                        },
+                        {
+                            "questionId":  "r1q4",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Cream soda",
+                            "wager":  null,
+                            "grade":  "half",
+                            "autoMatched":  false,
+                            "submittedAt":  1793145148825
+                        },
+                        {
+                            "questionId":  "r1q4",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Root beer float",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793145019473
+                        },
+                        {
+                            "questionId":  "r1q4",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Rootbear float",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793145153599
+                        },
+                        {
+                            "questionId":  "r1q5",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "BOOBIES",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793145388754
+                        },
+                        {
+                            "questionId":  "r1q5",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Boobies",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793145290298
+                        },
+                        {
+                            "questionId":  "r1q5",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "BOOBIES",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793145310580
+                        },
+                        {
+                            "questionId":  "r1q5",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Boobies",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793145326650
+                        },
+                        {
+                            "questionId":  "r1q5",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Boobies",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793145426839
+                        },
+                        {
+                            "questionId":  "r1q6",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Jujitsu",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793145578800
+                        },
+                        {
+                            "questionId":  "r1q6",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Brazilian Jiu Jitsu",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793145493670
+                        },
+                        {
+                            "questionId":  "r1q6",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Jiu-Jitsu",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793145495947
+                        },
+                        {
+                            "questionId":  "r1q6",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Jujutsu",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793145530723
+                        },
+                        {
+                            "questionId":  "r1q6",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Ju Jitsu",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793145543880
+                        },
+                        {
+                            "questionId":  "r1q7",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Under the Neon Moon Walking",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793145828805
+                        },
+                        {
+                            "questionId":  "r1q7",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Underneath the moon walk",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793146015722
+                        },
+                        {
+                            "questionId":  "r1q7",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Something moonwalk",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793145870393
+                        },
+                        {
+                            "questionId":  "r1q7",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Full moon walk",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793146029079
+                        },
+                        {
+                            "questionId":  "r1q7",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Alabama Moon walk",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793145940541
+                        },
+                        {
+                            "questionId":  "r1q8",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "I do, We Do, You Do You Boo",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793146096609
+                        },
+                        {
+                            "questionId":  "r1q8",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "I do we do you do you",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793146097765
+                        },
+                        {
+                            "questionId":  "r1q8",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Figure it out",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793146117564
+                        },
+                        {
+                            "questionId":  "r1q9",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Scoobydoo",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793146216209
+                        },
+                        {
+                            "questionId":  "r1q9",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Scooby doo",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793146211509
+                        },
+                        {
+                            "questionId":  "r1q9",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Scooby Doo",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793146218945
+                        },
+                        {
+                            "questionId":  "r1q9",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Over The Hedge",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793146254778
+                        },
+                        {
+                            "questionId":  "r1q9",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Boobies",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793146267860
+                        },
+                        {
+                            "questionId":  "r1q10",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Doom Boom Gloom",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793146447945
+                        },
+                        {
+                            "questionId":  "r1q10",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Fuck this category",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793146449295
+                        },
+                        {
+                            "questionId":  "r1q10",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Truman show",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793146471526
+                        },
+                        {
+                            "questionId":  "r1q10",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Liar liar",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793146480978
+                        },
+                        {
+                            "questionId":  "r1q10",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "The Truman Show",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793146495266
+                        },
+                        {
+                            "questionId":  "r1q11",
+                            "poolId":  "r1-conf",
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Pool",
+                            "wager":  8,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793146621817
+                        },
+                        {
+                            "questionId":  "r1q11",
+                            "poolId":  "r1-conf",
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Foosball",
+                            "wager":  8,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793146649811
+                        },
+                        {
+                            "questionId":  "r1q11",
+                            "poolId":  "r1-conf",
+                            "teamId":  "myanrack",
+                            "answer":  "Bocce Ball",
+                            "wager":  2,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793146704698
+                        },
+                        {
+                            "questionId":  "r1q11",
+                            "poolId":  "r1-conf",
+                            "teamId":  "not-olivia",
+                            "answer":  "I don’t play games that involve backflips, I am not athletic",
+                            "wager":  2,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793146770103
+                        },
+                        {
+                            "questionId":  "r1q12",
+                            "poolId":  "r1-conf",
+                            "teamId":  "not-olivia",
+                            "answer":  "Roosters",
+                            "wager":  8,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793146825746
+                        },
+                        {
+                            "questionId":  "r1q12",
+                            "poolId":  "r1-conf",
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Roosters",
+                            "wager":  8,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793146826627
+                        },
+                        {
+                            "questionId":  "r1q12",
+                            "poolId":  "r1-conf",
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Roosters",
+                            "wager":  6,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793146832202
+                        },
+                        {
+                            "questionId":  "r1q12",
+                            "poolId":  "r1-conf",
+                            "teamId":  "myanrack",
+                            "answer":  "Roosters",
+                            "wager":  8,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793146833983
+                        },
+                        {
+                            "questionId":  "r1q12",
+                            "poolId":  "r1-conf",
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Roosters",
+                            "wager":  6,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793146950938
+                        },
+                        {
+                            "questionId":  "r1q13",
+                            "poolId":  "r1-conf",
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Drew",
+                            "wager":  6,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793146985780
+                        },
+                        {
+                            "questionId":  "r1q13",
+                            "poolId":  "r1-conf",
+                            "teamId":  "not-olivia",
+                            "answer":  "Drew afaulo",
+                            "wager":  6,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793146992702
+                        },
+                        {
+                            "questionId":  "r1q13",
+                            "poolId":  "r1-conf",
+                            "teamId":  "myanrack",
+                            "answer":  "Sophie Cunningham",
+                            "wager":  4,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147001582
+                        },
+                        {
+                            "questionId":  "r1q13",
+                            "poolId":  "r1-conf",
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Drew Afuelo",
+                            "wager":  4,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147026686
+                        },
+                        {
+                            "questionId":  "r1q13",
+                            "poolId":  "r1-conf",
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "I’m a bad person",
+                            "wager":  2,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147061854
+                        },
+                        {
+                            "questionId":  "r1q14",
+                            "poolId":  "r1-conf",
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Chuggi",
+                            "wager":  2,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147237332
+                        },
+                        {
+                            "questionId":  "r1q14",
+                            "poolId":  "r1-conf",
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Cheugie",
+                            "wager":  4,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147199900
+                        },
+                        {
+                            "questionId":  "r1q14",
+                            "poolId":  "r1-conf",
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Cheugy",
+                            "wager":  4,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793147202745
+                        },
+                        {
+                            "questionId":  "r1q14",
+                            "poolId":  "r1-conf",
+                            "teamId":  "myanrack",
+                            "answer":  "Grandma-chique",
+                            "wager":  6,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147260337
+                        },
+                        {
+                            "questionId":  "r1q14",
+                            "poolId":  "r1-conf",
+                            "teamId":  "not-olivia",
+                            "answer":  "Croonchie",
+                            "wager":  4,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147297946
+                        },
+                        {
+                            "questionId":  "r2q1",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "The Bible",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147562372
+                        },
+                        {
+                            "questionId":  "r2q1",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "A Brave New World",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147488513
+                        },
+                        {
+                            "questionId":  "r2q1",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Nika plz I’m begging you",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147613920
+                        },
+                        {
+                            "questionId":  "r2q1",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Oo",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147514971
+                        },
+                        {
+                            "questionId":  "r2q1",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "The cow goes moo",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147581855
+                        },
+                        {
+                            "questionId":  "r2q2",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Jovial",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793147658220
+                        },
+                        {
+                            "questionId":  "r2q2",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Jovial",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793147659476
+                        },
+                        {
+                            "questionId":  "r2q2",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Goofy",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147716268
+                        },
+                        {
+                            "questionId":  "r2q2",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Poop",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147741697
+                        },
+                        {
+                            "questionId":  "r2q2",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Pluto",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147795411
+                        },
+                        {
+                            "questionId":  "r2q3",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Jacksonville",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793147854685
+                        },
+                        {
+                            "questionId":  "r2q3",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Soak city",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147878036
+                        },
+                        {
+                            "questionId":  "r2q3",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Jacksonville",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793147904379
+                        },
+                        {
+                            "questionId":  "r2q3",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Miami",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147891562
+                        },
+                        {
+                            "questionId":  "r2q3",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Tallahassee",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793147937231
+                        },
+                        {
+                            "questionId":  "r2q4",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Don’t kill the messenger",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148015571
+                        },
+                        {
+                            "questionId":  "r2q4",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Don’t shoot the messenger",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148055442
+                        },
+                        {
+                            "questionId":  "r2q4",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Don\u0027t shoot the messenger",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148022081
+                        },
+                        {
+                            "questionId":  "r2q4",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Don’t kill the messenger",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148025644
+                        },
+                        {
+                            "questionId":  "r2q4",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Barrier of bad news",
+                            "wager":  null,
+                            "grade":  "half",
+                            "autoMatched":  false,
+                            "submittedAt":  1793148190707
+                        },
+                        {
+                            "questionId":  "r2q5",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Spoolie",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148222437
+                        },
+                        {
+                            "questionId":  "r2q5",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Spoolie",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148224921
+                        },
+                        {
+                            "questionId":  "r2q5",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Spooly",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148280192
+                        },
+                        {
+                            "questionId":  "r2q5",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Yes",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793148235618
+                        },
+                        {
+                            "questionId":  "r2q5",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Glue brush",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793148287695
+                        },
+                        {
+                            "questionId":  "r2q6",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Coolio",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148443694
+                        },
+                        {
+                            "questionId":  "r2q6",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Taylor swift",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793148387892
+                        },
+                        {
+                            "questionId":  "r2q6",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Coolie",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793148462405
+                        },
+                        {
+                            "questionId":  "r2q6",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Coolie something",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793148398399
+                        },
+                        {
+                            "questionId":  "r2q6",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Akon",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793148429118
+                        },
+                        {
+                            "questionId":  "r2q7",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Mushroom rissoto",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793148549851
+                        },
+                        {
+                            "questionId":  "r2q7",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Mushroom risotto",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148651921
+                        },
+                        {
+                            "questionId":  "r2q7",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Fishfood",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793148649021
+                        },
+                        {
+                            "questionId":  "r2q7",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Mushroom-risotto",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793148680356
+                        },
+                        {
+                            "questionId":  "r2q7",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Fuck off",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793148729090
+                        },
+                        {
+                            "questionId":  "r2q8",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Fool’s gold",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148925277
+                        },
+                        {
+                            "questionId":  "r2q8",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Fool’s gold",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148940413
+                        },
+                        {
+                            "questionId":  "r2q8",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Fools gold",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148902055
+                        },
+                        {
+                            "questionId":  "r2q8",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Fool’s gold",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148911837
+                        },
+                        {
+                            "questionId":  "r2q8",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Loot\u0027n Gold",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793148921172
+                        },
+                        {
+                            "questionId":  "r2q9",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Doobie brothers",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793148987335
+                        },
+                        {
+                            "questionId":  "r2q9",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Boo-ancé",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149007542
+                        },
+                        {
+                            "questionId":  "r2q9",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Aerosmith",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149036069
+                        },
+                        {
+                            "questionId":  "r2q9",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Alice Cooper",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149105005
+                        },
+                        {
+                            "questionId":  "r2q9",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Whoo cares",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149057148
+                        },
+                        {
+                            "questionId":  "r2q10",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Schoolboy Q",
+                            "wager":  null,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793149145274
+                        },
+                        {
+                            "questionId":  "r2q10",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "NLE choopa",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149161218
+                        },
+                        {
+                            "questionId":  "r2q10",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "That guy from TikTok",
+                            "wager":  null,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149212567
+                        },
+                        {
+                            "questionId":  "r2q11",
+                            "poolId":  "r2-conf",
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Sonny June",
+                            "wager":  8,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149366492
+                        },
+                        {
+                            "questionId":  "r2q11",
+                            "poolId":  "r2-conf",
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Nancy Drew",
+                            "wager":  8,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793149378485
+                        },
+                        {
+                            "questionId":  "r2q11",
+                            "poolId":  "r2-conf",
+                            "teamId":  "not-olivia",
+                            "answer":  "Nancy drew: the computer game",
+                            "wager":  2,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149400822
+                        },
+                        {
+                            "questionId":  "r2q11",
+                            "poolId":  "r2-conf",
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Nancy Drew",
+                            "wager":  2,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793149403138
+                        },
+                        {
+                            "questionId":  "r2q11",
+                            "poolId":  "r2-conf",
+                            "teamId":  "myanrack",
+                            "answer":  "Courage the Cowardly Dog",
+                            "wager":  2,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149431101
+                        },
+                        {
+                            "questionId":  "r2q12",
+                            "poolId":  "r2-conf",
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Abigail",
+                            "wager":  6,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149489710
+                        },
+                        {
+                            "questionId":  "r2q12",
+                            "poolId":  "r2-conf",
+                            "teamId":  "not-olivia",
+                            "answer":  "TITUBA",
+                            "wager":  8,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793149492993
+                        },
+                        {
+                            "questionId":  "r2q12",
+                            "poolId":  "r2-conf",
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Tituba",
+                            "wager":  6,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793149493613
+                        },
+                        {
+                            "questionId":  "r2q12",
+                            "poolId":  "r2-conf",
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Titaua",
+                            "wager":  4,
+                            "grade":  "correct",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149571618
+                        },
+                        {
+                            "questionId":  "r2q12",
+                            "poolId":  "r2-conf",
+                            "teamId":  "myanrack",
+                            "answer":  "Wendy the Witch",
+                            "wager":  4,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149560922
+                        },
+                        {
+                            "questionId":  "r2q13",
+                            "poolId":  "r2-conf",
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "The perfume aisle",
+                            "wager":  4,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793149638987
+                        },
+                        {
+                            "questionId":  "r2q13",
+                            "poolId":  "r2-conf",
+                            "teamId":  "myanrack",
+                            "answer":  "DAVEY JONE\u0027S LOCKER",
+                            "wager":  8,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149645745
+                        },
+                        {
+                            "questionId":  "r2q13",
+                            "poolId":  "r2-conf",
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Goofy goober",
+                            "wager":  6,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149789462
+                        },
+                        {
+                            "questionId":  "r2q13",
+                            "poolId":  "r2-conf",
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Sock",
+                            "wager":  2,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149816315
+                        },
+                        {
+                            "questionId":  "r2q13",
+                            "poolId":  "r2-conf",
+                            "teamId":  "not-olivia",
+                            "answer":  "Soup isle",
+                            "wager":  4,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149764576
+                        },
+                        {
+                            "questionId":  "r2q14",
+                            "poolId":  "r2-conf",
+                            "teamId":  "not-olivia",
+                            "answer":  "Boogey man",
+                            "wager":  6,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149886689
+                        },
+                        {
+                            "questionId":  "r2q14",
+                            "poolId":  "r2-conf",
+                            "teamId":  "myanrack",
+                            "answer":  "Jim",
+                            "wager":  6,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149890892
+                        },
+                        {
+                            "questionId":  "r2q14",
+                            "poolId":  "r2-conf",
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Captain Phillips",
+                            "wager":  2,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149895265
+                        },
+                        {
+                            "questionId":  "r2q14",
+                            "poolId":  "r2-conf",
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "The boogie man",
+                            "wager":  4,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149909590
+                        },
+                        {
+                            "questionId":  "r2q14",
+                            "poolId":  "r2-conf",
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Pity me",
+                            "wager":  8,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793149931690
+                        },
+                        {
+                            "questionId":  "r2q15",
+                            "poolId":  null,
+                            "teamId":  "the-biggest-loser",
+                            "answer":  "Hoops",
+                            "wager":  20,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793150285018
+                        },
+                        {
+                            "questionId":  "r2q15",
+                            "poolId":  null,
+                            "teamId":  "freshbitch-academy",
+                            "answer":  "Brooch",
+                            "wager":  20,
+                            "grade":  "correct",
+                            "autoMatched":  true,
+                            "submittedAt":  1793150102760
+                        },
+                        {
+                            "questionId":  "r2q15",
+                            "poolId":  null,
+                            "teamId":  "myanrack",
+                            "answer":  "Hoop Earring",
+                            "wager":  20,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793150122608
+                        },
+                        {
+                            "questionId":  "r2q15",
+                            "poolId":  null,
+                            "teamId":  "box-combo-no-slaw-extra-toast",
+                            "answer":  "Food",
+                            "wager":  13,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793150324436
+                        },
+                        {
+                            "questionId":  "r2q15",
+                            "poolId":  null,
+                            "teamId":  "not-olivia",
+                            "answer":  "Poot Poot",
+                            "wager":  20,
+                            "grade":  "wrong",
+                            "autoMatched":  false,
+                            "submittedAt":  1793150325026
+                        }
+                    ],
+    "themeGuesses":  [
+                         {
+                             "id":  "tg-280a8c59",
+                             "teamId":  "box-combo-no-slaw-extra-toast",
+                             "teamName":  "Box combo no slaw extra toast",
+                             "guess":  "Beef flavors?",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  1,
+                             "submittedAt":  1793144276950
+                         },
+                         {
+                             "id":  "tg-5174a821",
+                             "teamId":  "not-olivia",
+                             "teamName":  "Not Olivia",
+                             "guess":  "Lesbians",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  1,
+                             "submittedAt":  1793144364053
+                         },
+                         {
+                             "id":  "tg-0af3f0b2",
+                             "teamId":  "not-olivia",
+                             "teamName":  "Not Olivia",
+                             "guess":  "Women",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  1,
+                             "submittedAt":  1793144418295
+                         },
+                         {
+                             "id":  "tg-f7266e3c",
+                             "teamId":  "freshbitch-academy",
+                             "teamName":  "Freshbitch Academy",
+                             "guess":  "The English team",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  1,
+                             "submittedAt":  1793144422440
+                         },
+                         {
+                             "id":  "tg-f2803146",
+                             "teamId":  "freshbitch-academy",
+                             "teamName":  "Freshbitch Academy",
+                             "guess":  "Nika",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  1,
+                             "submittedAt":  1793144449094
+                         },
+                         {
+                             "id":  "tg-497c0a88",
+                             "teamId":  "not-olivia",
+                             "teamName":  "Not Olivia",
+                             "guess":  "Halloween",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  1,
+                             "submittedAt":  1793144450845
+                         },
+                         {
+                             "id":  "tg-07c0ba85",
+                             "teamId":  "freshbitch-academy",
+                             "teamName":  "Freshbitch Academy",
+                             "guess":  "Colonization",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  1,
+                             "submittedAt":  1793144557617
+                         },
+                         {
+                             "id":  "tg-6493e66a",
+                             "teamId":  "freshbitch-academy",
+                             "teamName":  "Freshbitch Academy",
+                             "guess":  "Double O",
+                             "status":  "approved",
+                             "bonusPoints":  6,
+                             "questionNumber":  2,
+                             "submittedAt":  1793144701926
+                         },
+                         {
+                             "id":  "tg-27dfcf3f",
+                             "teamId":  "not-olivia",
+                             "teamName":  "Not Olivia",
+                             "guess":  "Plant things",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  2,
+                             "submittedAt":  1793144722337
+                         },
+                         {
+                             "id":  "tg-b9cf9c5d",
+                             "teamId":  "box-combo-no-slaw-extra-toast",
+                             "teamName":  "Box combo no slaw extra toast",
+                             "guess":  "Water ways",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  2,
+                             "submittedAt":  1793144743393
+                         },
+                         {
+                             "id":  "tg-c705514d",
+                             "teamId":  "the-biggest-loser",
+                             "teamName":  "The Biggest Loser",
+                             "guess":  "Questions that are too hard",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  3,
+                             "submittedAt":  1793144815015
+                         },
+                         {
+                             "id":  "tg-bf978085",
+                             "teamId":  "the-biggest-loser",
+                             "teamName":  "The Biggest Loser",
+                             "guess":  "History within movies",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  3,
+                             "submittedAt":  1793144868635
+                         },
+                         {
+                             "id":  "tg-db3721d7",
+                             "teamId":  "not-olivia",
+                             "teamName":  "Not Olivia",
+                             "guess":  "Okay idk but I’m disappointed bc why was Katelyn was so mad about trivia being too male centered and every single question has been about men so far so what are we doing",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  4,
+                             "submittedAt":  1793145032322
+                         },
+                         {
+                             "id":  "tg-bb29fdc4",
+                             "teamId":  "not-olivia",
+                             "teamName":  "Not Olivia",
+                             "guess":  "“Oo” sound",
+                             "status":  "approved",
+                             "bonusPoints":  6,
+                             "questionNumber":  6,
+                             "submittedAt":  1793145590036
+                         },
+                         {
+                             "id":  "tg-e66aa4f7",
+                             "teamId":  "the-biggest-loser",
+                             "teamName":  "The Biggest Loser",
+                             "guess":  "Random shit",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  6,
+                             "submittedAt":  1793145591396
+                         },
+                         {
+                             "id":  "tg-8f9d9efc",
+                             "teamId":  "box-combo-no-slaw-extra-toast",
+                             "teamName":  "Box combo no slaw extra toast",
+                             "guess":  "The french",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  6,
+                             "submittedAt":  1793145604376
+                         },
+                         {
+                             "id":  "tg-8f9d61ef",
+                             "teamId":  "myanrack",
+                             "teamName":  "MyanRack",
+                             "guess":  "Lu",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  6,
+                             "submittedAt":  1793145613260
+                         },
+                         {
+                             "id":  "tg-0daa52ea",
+                             "teamId":  "the-biggest-loser",
+                             "teamName":  "The Biggest Loser",
+                             "guess":  "Drinks",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  6,
+                             "submittedAt":  1793145677336
+                         },
+                         {
+                             "id":  "tg-eb863a29",
+                             "teamId":  "myanrack",
+                             "teamName":  "MyanRack",
+                             "guess":  "Ooh",
+                             "status":  "approved",
+                             "bonusPoints":  6,
+                             "questionNumber":  6,
+                             "submittedAt":  1793145680453
+                         },
+                         {
+                             "id":  "tg-40907434",
+                             "teamId":  "box-combo-no-slaw-extra-toast",
+                             "teamName":  "Box combo no slaw extra toast",
+                             "guess":  "2 syllables",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  6,
+                             "submittedAt":  1793145703049
+                         },
+                         {
+                             "id":  "tg-39f4ba0e",
+                             "teamId":  "box-combo-no-slaw-extra-toast",
+                             "teamName":  "Box combo no slaw extra toast",
+                             "guess":  "Has ooo sound?",
+                             "status":  "approved",
+                             "bonusPoints":  6,
+                             "questionNumber":  9,
+                             "submittedAt":  1793146360223
+                         },
+                         {
+                             "id":  "tg-8e3fc7f2",
+                             "teamId":  "the-biggest-loser",
+                             "teamName":  "The Biggest Loser",
+                             "guess":  "Double vowels",
+                             "status":  "rejected",
+                             "bonusPoints":  0,
+                             "questionNumber":  13,
+                             "submittedAt":  1793146987613
+                         }
+                     ]
+}
